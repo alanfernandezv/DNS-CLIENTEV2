@@ -1,0 +1,28 @@
+version: "2.2"
+services:
+  asir_bind9:
+    image: internetsystemsconsortium/bind9:9.16
+    ports:
+      - 53:53
+    volumes:
+      - conf:/etc/bind
+    networks:
+      br02:
+       ipv4_address: 10.1.0.2
+   
+  asir_cliente:
+    image: ubuntu
+    stdin_open: true  # docker run -i
+    tty: true         # docker run -t
+    networks:
+      - br02
+
+volumes:
+  conf:
+    
+
+
+networks:
+   br02:
+    external: true
+        
